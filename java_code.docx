@@ -1,0 +1,110 @@
+Here’s a line-by-line explanation of this Java code, which checks whether a string is a palindrome using two different methods.
+
+java
+Copy code
+package Palindrome;
+Defines the package Palindrome, which organizes classes. Packages help avoid class name conflicts and make the code modular.
+java
+Copy code
+import java.util.Scanner;
+Imports the Scanner class from java.util, allowing us to take user input from the console.
+java
+Copy code
+public class Palindrome {
+Declares the main Palindrome class, which contains all the methods for checking palindromes and running the program.
+Method 1: checkPalindrome
+java
+Copy code
+public static boolean checkPalindrome(String str) {
+Declares the checkPalindrome method, which is public (accessible from outside the class) and static (can be called without creating an instance of Palindrome). It returns a boolean indicating if str is a palindrome.
+java
+Copy code
+    StringBuilder sb = new StringBuilder(str);
+Creates a StringBuilder object, sb, initialized with the input str. StringBuilder allows for easy string manipulations like reversing.
+java
+Copy code
+    sb.reverse();
+Reverses the content of sb. This will store the reversed version of str in sb.
+java
+Copy code
+    String rev = sb.toString();
+Converts the reversed sb back to a regular String and assigns it to rev.
+java
+Copy code
+    if(rev.equals(str)) {
+        return true;
+    }
+Compares rev with the original str. If they are equal, str is a palindrome, so the method returns true.
+java
+Copy code
+    return false;
+If the strings are not equal, the method returns false, meaning str is not a palindrome.
+Method 2: palindrome
+java
+Copy code
+public static boolean palindrome(String s) {
+Declares another method, palindrome, which checks if s is a palindrome using recursion. It returns a boolean.
+java
+Copy code
+    int strLength = s.length();
+Stores the length of s in the variable strLength.
+java
+Copy code
+    if(strLength <= 1) {
+        return true;
+    }
+Checks if the length of s is 1 or less. A string with one or no characters is a palindrome, so the method returns true.
+java
+Copy code
+    if(s.charAt(0) == s.charAt(strLength - 1)) {
+        return palindrome(s.substring(1, strLength - 1));
+    }
+Checks if the first and last characters of s are equal. If they are, it makes a recursive call to palindrome with a substring of s, excluding the first and last characters. This recursive call checks the next set of characters.
+java
+Copy code
+    return false;
+If the first and last characters are not equal, it returns false, meaning s is not a palindrome.
+Main Method
+java
+Copy code
+public static void main(String[] args) {
+The main method, where the program begins execution.
+java
+Copy code
+    Scanner scan = new Scanner(System.in);
+Creates a Scanner object, scan, to read input from the console.
+java
+Copy code
+    System.out.println("Please enter in the word you would like to see if it is a palindrome.");
+Prompts the user to enter a word to check if it’s a palindrome.
+java
+Copy code
+    String str = scan.next().toLowerCase();
+Reads the next token (word) from the user input, converts it to lowercase (to make the check case-insensitive), and assigns it to str.
+java
+Copy code
+    boolean a = checkPalindrome(str);
+    boolean b = palindrome(str);
+Calls both checkPalindrome and palindrome methods with str, storing their return values in a and b, respectively.
+java
+Copy code
+    System.out.println(a);
+    System.out.println(b);
+Prints the results of both palindrome checks to the console.
+java
+Copy code
+    // this is how you comment code in Java
+A single-line comment explaining that this is how to add comments in Java.
+java
+Copy code
+    System.out.println("Here I am posting a new line that says what I just wrote " + str);
+Prints a line with the user’s inputted word, str, appended to the message.
+java
+Copy code
+}
+Ends the main method.
+java
+Copy code
+}
+Ends the Palindrome class.
+This code provides two methods for checking if a word is a palindrome, with one using string reversal and the other using recursion. It prompts the user for input, performs both checks, and outputs the results.
